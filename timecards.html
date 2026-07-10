@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Random Term Timer</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255, 255, 255, 0.06);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.7);
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(88, 101, 242, 0.35), transparent 60%),
+                  radial-gradient(1000px 700px at 90% 30%, rgba(34, 197, 94, 0.22), transparent 55%),
+                  radial-gradient(900px 650px at 50% 90%, rgba(236, 72, 153, 0.18), transparent 55%),
+                  var(--bg);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .app {
+      width: min(980px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .card header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .title {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .content { padding: 16px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    textarea, input[type="number"] {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--text);
+      padding: 12px 12px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 220px;
+      resize: vertical;
+      line-height: 1.35;
+    }
+
+    input[type="number"] {
+      height: 44px;
+      appearance: textfield;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 650;
+      transition: transform 0.06s ease, background 0.2s ease, opacity 0.2s ease;
+      user-select: none;
+    }
+
+    button:hover { background: rgba(255, 255, 255, 0.12); }
+    button:active { transform: translateY(1px); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .hint {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .error {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.10);
+      color: rgba(255, 235, 235, 0.95);
+      display: none;
+    }
+
+    .display {
+      height: 100%;
+      min-height: 380px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .big-term {
+      padding: 22px 18px 8px;
+      text-align: center;
+      font-size: clamp(28px, 4vw, 56px);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      word-break: break-word;
+    }
+
+    .sub {
+      text-align: center;
+      color: var(--muted);
+      padding: 0 18px 18px;
+    }
+
+    .timer {
+      display: grid;
+      place-items: center;
+      padding: 22px 18px;
+      border-top: 1px solid var(--line);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer .num {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .timer .label {
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 860px) {
+      .app { grid-template-columns: 1fr; }
+      .display { min-height: 320px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="card">
+      <header>
+        <div class="title">Inputs</div>
+        <div class="hint">One term per line</div>
+      </header>
+      <div class="content">
+        <label for="terms">Terms</label>
+        <textarea id="terms" placeholder="e.g.
+apple
+banana
+cherry"></textarea>
+
+        <div class="row">
+          <div>
+            <label for="gap">Time gap (seconds)</label>
+            <input id="gap" type="number" min="1" step="1" value="5" />
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn">Start</button>
+          <button id="stopBtn" disabled>Stop</button>
+          <span class="hint" id="status">Stopped</span>
+        </div>
+
+        <div class="error" id="errorBox"></div>
+      </div>
+    </section>
+
+    <section class="card display">
+      <header>
+        <div class="title">Random Term</div>
+        <div class="hint">Repeats allowed</div>
+      </header>
+
+      <div>
+        <div class="big-term" id="termOut">—</div>
+        <div class="sub" id="subOut">Press Start to begin</div>
+      </div>
+
+      <div class="timer">
+        <div class="num" id="timeOut">0</div>
+        <div class="label">seconds remaining</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const termsEl = document.getElementById('terms');
+    const gapEl = document.getElementById('gap');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+
+    const termOut = document.getElementById('termOut');
+    const subOut = document.getElementById('subOut');
+    const timeOut = document.getElementById('timeOut');
+    const statusEl = document.getElementById('status');
+
+    const errorBox = document.getElementById('errorBox');
+
+    let intervalId = null;
+    let nextSwitchAtMs = 0;
+    let gapSeconds = 0;
+    let terms = [];
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.style.display = 'block';
+    }
+
+    function clearError() {
+      errorBox.textContent = '';
+      errorBox.style.display = 'none';
+    }
+
+    function parseTerms(raw) {
+      // split on newlines, trim, drop empties
+      return raw
+        .split(/\r?\n/g)
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
+
+    function pickRandomTerm() {
+      const idx = Math.floor(Math.random() * terms.length);
+      return terms[idx];
+    }
+
+    function setRunningUI(running) {
+      startBtn.disabled = running;
+      stopBtn.disabled = !running;
+      termsEl.disabled = running;
+      gapEl.disabled = running;
+      statusEl.textContent = running ? 'Running' : 'Stopped';
+      subOut.textContent = running ? 'Showing a random term' : 'Press Start to begin';
+    }
+
+    function stop() {
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      setRunningUI(false);
+    }
+
+    function switchTermNow() {
+      termOut.textContent = pickRandomTerm();
+      nextSwitchAtMs = Date.now() + gapSeconds * 1000;
+    }
+
+    function tick() {
+      const remainingMs = nextSwitchAtMs - Date.now();
+      // Use ceil so it shows "5 ... 1" then switches at 0
+      const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+      timeOut.textContent = String(remainingSec);
+
+      if (remainingMs <= 0) {
+        switchTermNow();
+      }
+    }
+
+    function start() {
+      clearError();
+
+      terms = parseTerms(termsEl.value);
+      if (terms.length === 0) {
+        showError('Please enter at least one term (one per line).');
+        return;
+      }
+
+      gapSeconds = Number.parseInt(gapEl.value, 10);
+      if (!Number.isFinite(gapSeconds) || gapSeconds <= 0) {
+        showError('Time gap must be a positive integer (seconds).');
+        return;
+      }
+
+      stop(); // reset any prior run
+      setRunningUI(true);
+
+      switchTermNow(); // picks first term and sets nextSwitchAtMs
+      tick();          // update the UI immediately
+
+      // Update frequently for a responsive countdown while still showing integer seconds
+      intervalId = setInterval(tick, 100);
+    }
+
+    startBtn.addEventListener('click', start);
+    stopBtn.addEventListener('click', stop);
+
+    // Safety: stop timers if the tab is closed/navigated
+    window.addEventListener('beforeunload', stop);
+  </script>
+</body>
+</html>
