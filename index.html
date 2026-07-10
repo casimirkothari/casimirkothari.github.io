@@ -1,106 +1,293 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-<title> Casimir Kothari </title>
-<style>
-p.serif {
-  font-family: "Georgia", serif;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Casimir Kothari</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fdf7d6;
+      color: #222;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 42px 28px 60px;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 28px;
+      font-size: 2.3rem;
+      font-weight: normal;
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin-top: 38px;
+      margin-bottom: 14px;
+      font-size: 1.35rem;
+      font-weight: normal;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-bottom: 5px;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+
+    a {
+      color: #174a7e;
+    }
+
+    a:hover {
+      color: #0b2e52;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 620px) 220px;
+      gap: 52px;
+      align-items: start;
+    }
+
+    .intro-text {
+      min-width: 0;
+    }
+
+    .headshot {
+      display: block;
+      width: 220px;
+      height: auto;
+      border-radius: 2px;
+    }
+
+    .research-summary {
+      max-width: 760px;
+    }
+
+    ul {
+      margin-top: 0;
+      padding-left: 1.4em;
+    }
+
+    li {
+      margin-bottom: 1em;
+      padding-left: 0.15em;
+    }
+
+    .links {
+      white-space: normal;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 28px 20px 45px;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .headshot {
+        width: min(220px, 65vw);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 22px;
+      }
+    }
+  </style>
 </head>
 
-<body bgcolor=#FDF7D6 style="font-family:Times New Roman">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+  <main>
+    <h1>Casimir Kothari</h1>
 
+    <section class="intro">
+      <div class="intro-text">
+        <p>
+          Email: <i>ckothari (at) bu (dot) edu</i>.
+        </p>
 
-<h1> Casimir Kothari </h1>
+        <p>
+          I am a Postdoctoral Associate at
+          <a href="https://www.bu.edu/">Boston University</a>,
+          interested in algebraic geometry and number theory.
+        </p>
 
-<img src="headshot2.jpg" style="float:right;" width="200">
+        <p>
+          I received my PhD at the
+          <a href="https://www.uchicago.edu/">University of Chicago</a>,
+          where my advisor was
+          <a href="https://math.uchicago.edu/~emerton/">Matthew Emerton</a>.
+          My graduate studies were supported by an
+          <a href="https://www.nsfgrfp.org/">NSF Graduate Research Fellowship</a>.
+          Previously, I was an undergraduate at
+          <a href="https://www.princeton.edu/">Princeton University</a>.
+        </p>
+      </div>
 
-<p> 
-Email: <i> ckothari (at) bu (dot) edu</i>.
-</p>
-<p>
-I am a Postdoctoral Associate at <a href="https://www.bu.edu/">Boston University</a>, interested in algebraic geometry and number theory.
-</p>
-<p>
-I received my PhD at the <a href="https://www.uchicago.edu/"> University of Chicago</a>, where my advisor was <a href="https://math.uchicago.edu/~emerton/">Matthew Emerton</a>.
-My graduate studies were supported by an <a href="https://www.nsfgrfp.org/">NSF Graduate Research Fellowship</a>. Previously, I was an undergraduate at <a href="https://www.princeton.edu/"> Princeton University</a>. 
-</p>
+      <img
+        class="headshot"
+        src="headshot2.jpg"
+        alt="Casimir Kothari"
+      >
+    </section>
 
-<h3> Research </h3>
+    <section>
+      <h2>Research</h2>
 
-Recently I have been interested in moduli of finite locally free group schemes, and in de Rham cohomology/Hodge theory in positive and mixed characteristic.
-<ul>
+      <p class="research-summary">
+        Recently I have been interested in moduli of finite locally free group
+        schemes, and in de Rham cohomology and Hodge theory in positive and
+        mixed characteristic.
+      </p>
 
-<li> <i>Cartier&ndash;Dieudonné Theory of Connected Group Schemes</i>, with Joshua Mundinger. In preparation. <br>
+      <ul>
+        <li>
+          <i>Cartier&ndash;Dieudonné Theory of Connected Group Schemes</i>,
+          with Joshua Mundinger. In preparation.
+        </li>
 
-<br>
-	
-<li> <i>Dieudonné theory for n-smooth group schemes</i>, with Joshua Mundinger. To appear in <i>Algebra and Number Theory</i>. [<a href="Dieudonne Theory for n-smooth group schemes arxiv v1.pdf">pdf</a>] [<a href="https://www.arxiv.org/abs/2408.15333">arXiv</a>] [<a href="n-smooth NT sem 11-14-24.pdf">Informal talk notes</a>] [<a href="explicit presentations for n-smooth.pdf">Companion Note</a>] <br>
+        <li>
+          <i>Dieudonné theory for n-smooth group schemes</i>,
+          with Joshua Mundinger. To appear in
+          <i>Algebra and Number Theory</i>.
+          <span class="links">
+            [<a href="Dieudonne Theory for n-smooth group schemes arxiv v1.pdf">pdf</a>]
+            [<a href="https://www.arxiv.org/abs/2408.15333">arXiv</a>]
+            [<a href="n-smooth NT sem 11-14-24.pdf">informal talk notes</a>]
+            [<a href="explicit presentations for n-smooth.pdf">companion note</a>]
+          </span>
+        </li>
 
-<br>
+        <li>
+          <i>Duality of differential operators and algebraic de Rham cohomology</i>,
+          with Caleb Ji, Oliver Li, Svetlana Makarova, Shubhankar Sahai, and
+          Sridhar Venkatesh.
+          <span class="links">
+            [<a href="poincareduality.pdf">pdf</a>]
+            [<a href="https://arxiv.org/abs/2409.14322">arXiv</a>]
+          </span>
+        </li>
 
-<li> <i>Duality of differential operators and algebraic de Rham cohomology</i>, with Caleb Ji, Oliver Li, Svetlana Makarova, Shubhankar Sahai, <br> and Sridhar Venkatesh. [<a href="poincareduality.pdf">pdf</a>] [<a href="https://arxiv.org/abs/2409.14322">arXiv</a>] <br>
+        <li>
+          <i>
+            Arbitrarily large jumps in the de Rham and Hodge cohomology of
+            families in characteristic p
+          </i>.
+          To appear in <i>Journal de Théorie des Nombres de Bordeaux</i>.
+          <span class="links">
+            [<a href="ArbitrarydeRhamJumps.pdf">pdf</a>]
+            [<a href="https://arxiv.org/abs/2304.07628">arXiv</a>]
+          </span>
+        </li>
 
-<br>
+        <li>
+          <i>
+            The Explicit Sato&ndash;Tate Conjecture for Primes in Arithmetic
+            Progressions
+          </i>,
+          with Trajan Hammonds, Noah Luntzlara, Steven J. Miller, Jesse
+          Thorner, and Hunter Wieman.
+          <i>International Journal of Number Theory</i>,
+          Vol. 17, No. 08, pp. 1905–1923 (2021).
+          <span class="links">
+            [<a href="SatoTate-v2.pdf">pdf</a>]
+            [<a href="https://arxiv.org/abs/1906.07903">arXiv</a>]
+          </span>
+        </li>
+      </ul>
+    </section>
 
-<li> <i>Arbitrarily large jumps in the de Rham and Hodge cohomology of families in characteristic p. </i> To appear in <i>Journal de Théorie des Nombres <br> de Bordeaux</i>. [<a href="ArbitrarydeRhamJumps.pdf">pdf</a>] [<a href="https://arxiv.org/abs/2304.07628">arXiv</a>]  <br>
+    <section>
+      <h2>Talk Notes</h2>
 
-<br>
+      <ul>
+        <li>
+          <a href="ckothari - No Theory 5-15-2025.pdf">
+            Group Schemes over the Integers and Galois Representations
+          </a>
+        </li>
 
-<li> <i>The Explicit Sato&ndash;Tate Conjecture For Primes In Arithmetic Progressions,</i> with Trajan Hammonds, Noah Luntzlara, Steven J. Miller, <br> Jesse Thorner, and Hunter 
-Wieman.	 <i>International Journal of Number Theory</i>, Vol. 17, No. 08, pp. 1905-1923 (2021). [<a href="SatoTate-v2.pdf">pdf</a>] [<a href="https://arxiv.org/abs/1906.07903">arXiv</a>]
-</ul>
+        <li>
+          <a href="n-smooth NT sem 11-14-24.pdf">
+            Dieudonné theory for n-smooth group schemes
+          </a>
+        </li>
 
-<h3> Talk Notes </h3>
-<ul>
+        <li>
+          <a href="GroupSchemesTalk.pdf">
+            Group Schemes and Dieudonné Theory
+          </a>
+        </li>
 
-<li> <a href="ckothari - No Theory 5-15-2025.pdf">Group Schemes over the Integers and  Galois Representations</a>
+        <li>
+          <a href="ckothari - Displays Talk">
+            The Moduli Stack of Displays
+          </a>
+          [<a href="https://www.youtube.com/watch?v=z_ouYmcR0_c">video</a>]
+        </li>
 
-<br>
+        <li>
+          <a href="ckothari-ShimuraVarietiesFinal">
+            Modular Curves and Shimura Varieties
+          </a>
+        </li>
 
-<li> <a href="n-smooth NT sem 11-14-24.pdf">Dieudonné theory for n-smooth group schemes</a>
+        <li>
+          <a href="HodgeSymmetry.pdf">
+            Revisiting Failure of Hodge Symmetry in Characteristic p
+          </a>
+        </li>
 
-<br>
+        <li>
+          <a href="WittAndDelta.pdf">
+            Motivating Witt Vectors and Delta Rings
+          </a>
+        </li>
 
-<li> <a href="GroupSchemesTalk.pdf">Group Schemes and Dieudonné Theory</a>
+        <li>
+          <a href="Cartier.pdf">
+            Differential Forms in Positive Characteristic and the Cartier
+            Isomorphism
+          </a>
+        </li>
+      </ul>
+    </section>
 
-<br>
+    <section>
+      <h2>Other Notes</h2>
 
-	
-<li> <a href="ckothari - Displays Talk">The Moduli Stack of Displays</a> <a href="https://www.youtube.com/watch?v=z_ouYmcR0_c"> [video] </a>
+      <ul>
+        <li>
+          <a href="explicit presentations for n-smooth.pdf">
+            Explicit Presentations for the Moduli Stack of n-smooth Group
+            Schemes
+          </a>
+        </li>
 
-<br>
-
-
-<li> <a href="ckothari-ShimuraVarietiesFinal">Modular Curves and Shimura Varieties</a>
-
-<br>
-
-
-<li> <a href="HodgeSymmetry.pdf">Revisiting Failure of Hodge Symmetry in Characteristic p</a>
-
-<br>
-
-<li> <a href="WittAndDelta.pdf">Motivating Witt Vectors and Delta Rings</a>
-
-<br>
-
-<li> <a href="Cartier.pdf">Differential Forms in Positive Characteristic and the Cartier Isomorphism</a>
-</ul>
-
-
-<h3> Other Notes </h3>
-<ul>
-
-<li> <a href="explicit presentations for n-smooth.pdf">Explicit Presentations for the Moduli Stack of n-smooth Group Schemes</a>
-
-<br>
-
-<li> <a href="HodgeNumbersHypersurfaces.pdf">The Hodge Numbers of Projective Hypersurfaces</a>
-</ul>
-	
+        <li>
+          <a href="HodgeNumbersHypersurfaces.pdf">
+            The Hodge Numbers of Projective Hypersurfaces
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
 </body>
+
 </html>
